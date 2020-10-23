@@ -13,6 +13,8 @@ pipelineJob('account-02') {
               stage ('Build') {
                 steps {
                   sh "echo 'Build phase - ${params.account_name}'"
+                   writeFile file: "report.csv", text: "This file is useful, need to archive it."
+                   writeFile file: "report.html", text: "This file is useful, need to archive it."
                 }
               }
               stage ('Unit tests') {
