@@ -1,18 +1,18 @@
 #!/usr/bin/env groovy
 
-pipelineJob('example-pipeline-account-01') {
+pipelineJob('account-01') {
   definition {
     cps {
       script('''
         pipeline {
         parameters {
-          choice(choices: ['ACCOUNT-01''], description: 'Name of the Account?', account_name: 'account01')
+          choice(choices: ['ACCOUNT-01'], description: 'Name of the Account?', name: 'account_name')
         }
           agent any
             stages {
               stage ('Build') {
                 steps {
-                  sh "echo 'Build phase - ${params.account_name}'
+                  sh "echo 'Build phase - ${params.account_name}'"
                 }
               }
               stage ('Unit tests') {
