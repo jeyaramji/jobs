@@ -12,7 +12,8 @@ pipelineJob('account-02') {
             stages {
               stage ('Clone Repo') {
                 steps {
-                  git credentialsId: '', url: 'https://github.com/jeyaramji/web01.git'
+                  //git credentialsId: '', url: 'https://github.com/jeyaramji/web01.git'
+                  checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/jeyaramji/web01.git']]])
                   sh "echo 'Build phase - ${params.account_name}'"
                    writeFile file: "report.csv", text: "This file is useful, need to archive it."
                    writeFile file: "report.html", text: "This file is useful, need to archive it."
