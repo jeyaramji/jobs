@@ -8,7 +8,7 @@ pipelineJob('account-02') {
         parameters {
           choice(choices: ['ACCOUNT-02'], description: 'Name of the Account?', name: 'account_name')
         }
-          agent { docker { image 'python:3.7.2' } }
+          agent any
             stages {
                 stage('build') {
                   steps {
