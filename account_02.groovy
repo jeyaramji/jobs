@@ -8,11 +8,15 @@ pipelineJob('account-02') {
         parameters {
           choice(choices: ['ACCOUNT-02'], description: 'Name of the Account?', name: 'account_name')
         }
-          agent any
+          agent { docker { image 'python:3.7.2' } }
             stages {
+                stage('build') {
+                  steps {
+                    sh 'pip install -r requirements.txt'
+                  }
+                }
               stage ('Clone Repo') {
                 steps {
-                  //git credentialsId: '', url: 'https://github.com/jeyaramji/web01.git'
                   checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/jeyaramji/web01.git']]])
                   sh "echo 'Build phase - ${params.account_name}'"
                    writeFile file: "report.csv", text: "This file is useful, need to archive it."
