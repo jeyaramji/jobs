@@ -17,14 +17,10 @@ pipelineJob('account-02') {
                    writeFile file: "report.html", text: "This file is useful, need to archive it."
                 }
               }
-              stage ('Unit tests') {
+              stage ('"Archive build output"') {
                 steps {
-                  echo 'Unit testing phase'
-                }
-              }
-              stage ('Deploy') {
-                steps {
-                  echo 'Deploy phase'
+                  archiveArtifacts artifacts: '*.csv', excludes: 'output/*.md'
+                  archiveArtifacts artifacts: '*.html', excludes: 'output/*.md'
                 }
               }
             }
