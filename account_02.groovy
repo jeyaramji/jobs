@@ -1,4 +1,7 @@
 #!/usr/bin/env groovy
+folder('FolderB') {
+  description('Folder containing configuration, bootstrapping and seed jobs')
+}
 
 pipelineJob('FolderB/account-02') {
   definition {
