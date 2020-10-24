@@ -18,10 +18,10 @@ pipelineJob('account-02') {
                    writeFile file: "report.html", text: "This file is useful, need to archive it."
                 }
               }
-              stage('Build') {
-                steps {
-                  sh 'pip3 install -r requirements.txt'
-                  }
+//              stage('Build') {
+//                steps {
+//                  sh 'pip3 install -r requirements.txt'
+//                  }
               }
               stage ('Generate report') {
                 steps {
