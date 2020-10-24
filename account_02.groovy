@@ -10,11 +10,6 @@ pipelineJob('account-02') {
         }
           agent any
             stages {
-                stage('build') {
-                  steps {
-                    sh 'pip3 install -r requirements.txt'
-                  }
-                }
               stage ('Clone Repo') {
                 steps {
                   checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/jeyaramji/web01.git']]])
@@ -22,6 +17,11 @@ pipelineJob('account-02') {
                    writeFile file: "report.csv", text: "This file is useful, need to archive it."
                    writeFile file: "report.html", text: "This file is useful, need to archive it."
                 }
+              }
+              stage('Build') {
+                steps {
+                  sh 'pip3 install -r requirements.txt'
+                  }
               }
               stage ('Generate report') {
                 steps {
