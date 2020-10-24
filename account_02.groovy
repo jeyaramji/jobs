@@ -22,7 +22,7 @@ pipelineJob('account-02') {
 //                steps {
 //                  sh 'pip3 install -r requirements.txt'
 //                  }
-              }
+//              }
               stage ('Generate report') {
                 steps {
                   sh "echo 'Build phase - ${params.account_name}'"
