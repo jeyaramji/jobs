@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-pipelineJob('B/account-01') {
+pipelineJob('FolderA/account-01') {
   definition {
     cps {
       script('''
